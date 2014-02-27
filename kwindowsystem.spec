@@ -1,11 +1,11 @@
-%define major 5
+%define major 4
 %define libname %mklibname KF5WindowSystem %{major}
 %define devname %mklibname KF5WindowSystem -d
 %define debug_package %{nil}
 
 Name: kwindowsystem
-Version: 4.95.0
-Release: 2
+Version: 4.96.0
+Release: 1
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/4.95.0/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 window system library
 URL: http://kde.org/
@@ -65,6 +65,8 @@ classes.
 
 %install
 %makeinstall_std -C build
+mkdir -p %{buildroot}%{_libdir}/qt5
+mv %{buildroot}%{_prefix}/mkspecs %{buildroot}%{_libdir}/qt5
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
@@ -73,3 +75,4 @@ classes.
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/cmake/KF5WindowSystem
+%{_libdir}/qt5/mkspecs/modules/*
