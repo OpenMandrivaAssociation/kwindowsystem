@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name: kwindowsystem
-Version: 4.98.0
+Version: 4.99.0
 Release: 1
 Source0: http://ftp5.gwdg.de/pub/linux/kde/unstable/frameworks/%{version}/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 window system library
@@ -19,6 +19,7 @@ BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xrender)
 BuildRequires: qmake5
 BuildRequires: extra-cmake-modules5
+Requires: %{libname} = %{EVRD}
 
 %description
 KWindowSystem provides access to certain properties and features of the
@@ -32,6 +33,7 @@ classes.
 %package -n %{libname}
 Summary: The KDE Frameworks 5 window system library
 Group: System/Libraries
+Requires: %{name} = %{EVRD}
 
 %description -n %{libname}
 KWindowSystem provides access to certain properties and features of the
@@ -67,6 +69,16 @@ classes.
 %makeinstall_std -C build
 mkdir -p %{buildroot}%{_libdir}/qt5
 mv %{buildroot}%{_prefix}/mkspecs %{buildroot}%{_libdir}/qt5
+
+L="`pwd`/%{name}.lang"
+cd %{buildroot}
+for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
+	LNG=`echo $i |cut -d/ -f5`
+	echo -n "%lang($LNG) " >>$L
+	echo $i |cut -b2- >>$L
+done
+
+%files -f %{name}.lang
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
