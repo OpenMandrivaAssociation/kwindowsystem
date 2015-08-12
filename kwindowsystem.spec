@@ -5,7 +5,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Name: kwindowsystem
-Version: 5.12.0
+Version: 5.13.0
 Release: 2
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 window system library
@@ -80,7 +80,6 @@ done
 %files -n %{libname}
 %{_libdir}/*.so.%{major}
 %{_libdir}/*.so.%{version}
-%{_libdir}/qt5/plugins/kf5/org.kde.kwin/plugidowsystem.platforms/*.so
 
 %files -n %{devname}
 %{_includedir}/*
