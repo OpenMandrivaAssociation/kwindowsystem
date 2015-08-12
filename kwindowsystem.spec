@@ -6,7 +6,7 @@
 
 Name: kwindowsystem
 Version: 5.13.0
-Release: 2
+Release: 1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 window system library
 URL: http://kde.org/
@@ -78,8 +78,10 @@ done
 %files -f %{name}.lang
 
 %files -n %{libname}
+%dir %{_libdir}/qt5/plugins/kf5/org.kde.kwindowsystem.platforms
 %{_libdir}/*.so.%{major}
 %{_libdir}/*.so.%{version}
+%{_libdir}/qt5/plugins/kf5/org.kde.kwindowsystem.platforms/*.so
 
 %files -n %{devname}
 %{_includedir}/*
