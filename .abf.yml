@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   kwindowsystem-5.13.0.tar.xz: 6325e1172aba5b8865b43ff83d9655956f66b57a
+sources:
+  kwindowsystem-5.14.0.tar.xz: 0b3e1f102d14211ad6b0a5cb0533842d346c09a1
