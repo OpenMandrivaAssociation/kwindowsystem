@@ -26,6 +26,7 @@ BuildRequires: pkgconfig(xcb-proto)
 BuildRequires: pkgconfig(xcb-renderutil)
 BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xrender)
+BuildRequires: pkgconfig(xfixes)
 # For QCH format docs
 BuildRequires: doxygen
 BuildRequires: qt5-assistant
