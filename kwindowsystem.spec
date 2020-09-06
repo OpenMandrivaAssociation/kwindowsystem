@@ -5,7 +5,7 @@
 %define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
 
 Name: kwindowsystem
-Version:	5.73.0
+Version:	5.74.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 window system library
@@ -45,6 +45,7 @@ classes.
 Summary: The KDE Frameworks 5 window system library
 Group: System/Libraries
 Requires: %{name} = %{EVRD}
+Requires: %{name}-backend = %{EVRD}
 
 %description -n %{libname}
 KWindowSystem provides access to certain properties and features of the
@@ -77,6 +78,20 @@ Suggests: %{devname} = %{EVRD}
 %description -n %{name}-devel-docs
 Developer documentation for %{name} for use with Qt Assistant
 
+%package x11
+Summary: X11 window system plugin for kwindowsystem
+Provides: %{name}-backend = %{EVRD}
+
+%description x11
+X11 window system plugin for kwindowsystem
+
+%package wayland
+Summary: Wayland window system plugin for kwindowsystem
+Provides: %{name}-backend = %{EVRD}
+
+%description wayland
+Wayland window system plugin for kwindowsystem
+
 %prep
 %autosetup -p1
 %cmake_kde5
@@ -100,10 +115,15 @@ done
 %{_datadir}/qlogging-categories5/kwindowsystem.renamecategories
 
 %files -n %{libname}
-%dir %{_libdir}/qt5/plugins/kf5/org.kde.kwindowsystem.platforms
+%dir %{_libdir}/qt5/plugins/kf5/kwindowsystem
 %{_libdir}/*.so.%{major}
 %{_libdir}/*.so.%{version}
-%{_libdir}/qt5/plugins/kf5/org.kde.kwindowsystem.platforms/*.so
+
+%files x11
+%{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemX11Plugin.so
+
+%files wayland
+%{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemWaylandPlugin.so
 
 %files -n %{devname}
 %{_includedir}/*
