@@ -2,11 +2,12 @@
 %define libname %mklibname KF5WindowSystem %{major}
 %define devname %mklibname KF5WindowSystem -d
 %define debug_package %{nil}
-%define stable %([ "`echo %{version} |cut -d. -f3`" -ge 80 ] && echo -n un; echo -n stable)
+%define stable %([ "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
+%global __provides_exclude_from ^(%{_qt5_plugindir}/.*\\.so)$
 
 Name: kwindowsystem
 Version:	5.79.0
-Release:	1
+Release:	2
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 Summary: The KDE Frameworks 5 window system library
 URL: http://kde.org/
@@ -83,14 +84,14 @@ Summary: X11 window system plugin for kwindowsystem
 Provides: %{name}-backend = %{EVRD}
 
 %description x11
-X11 window system plugin for kwindowsystem
+X11 window system plugin for kwindowsystem.
 
 %package wayland
 Summary: Wayland window system plugin for kwindowsystem
 Provides: %{name}-backend = %{EVRD}
 
 %description wayland
-Wayland window system plugin for kwindowsystem
+Wayland window system plugin for kwindowsystem.
 
 %prep
 %autosetup -p1
@@ -102,7 +103,7 @@ Wayland window system plugin for kwindowsystem
 %install
 %ninja_install -C build
 
-L="`pwd`/%{name}.lang"
+L="$(pwd)/%{name}.lang"
 cd %{buildroot}
 for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
 	LNG=`echo $i |cut -d/ -f5`
