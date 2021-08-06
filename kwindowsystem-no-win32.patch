@@ -1,0 +1,29 @@
+diff -up kwindowsystem-5.85.0/CMakeLists.txt.omv~ kwindowsystem-5.85.0/CMakeLists.txt
+--- kwindowsystem-5.85.0/CMakeLists.txt.omv~	2021-08-06 22:09:11.430447224 +0200
++++ kwindowsystem-5.85.0/CMakeLists.txt	2021-08-06 22:09:17.203485849 +0200
+@@ -58,10 +58,6 @@ if (APPLE)
+     cmake_find_frameworks(CoreFoundation)
+ endif()
+ 
+-if(WIN32)
+-   find_package(Qt5WinExtras REQUIRED)
+-endif()
+-
+ if (NOT APPLE)
+     find_package(X11)
+ endif()
+diff -up kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in.omv~ kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in
+--- kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in.omv~	2021-08-06 22:09:20.910510652 +0200
++++ kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in	2021-08-06 22:09:29.913570886 +0200
+@@ -7,11 +7,5 @@ if(NOT @KWINDOWSYSTEM_NO_WIDGETS@)
+     find_dependency(Qt5Widgets @REQUIRED_QT_VERSION@)
+ endif()
+ 
+-if(NOT @BUILD_SHARED_LIBS@)
+-    if(@WIN32@)
+-        find_dependency(Qt5WinExtras @REQUIRED_QT_VERSION@)
+-    endif()
+-endif()
+-
+ include("${CMAKE_CURRENT_LIST_DIR}/KF5WindowSystemTargets.cmake")
+ @PACKAGE_INCLUDE_QCHTARGETS@
