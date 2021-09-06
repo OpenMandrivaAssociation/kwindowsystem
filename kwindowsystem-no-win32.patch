@@ -1,6 +1,6 @@
-diff -up kwindowsystem-5.85.0/CMakeLists.txt.omv~ kwindowsystem-5.85.0/CMakeLists.txt
---- kwindowsystem-5.85.0/CMakeLists.txt.omv~	2021-08-06 22:09:11.430447224 +0200
-+++ kwindowsystem-5.85.0/CMakeLists.txt	2021-08-06 22:09:17.203485849 +0200
+diff -up kwindowsystem-5.86.0/CMakeLists.txt.1~ kwindowsystem-5.86.0/CMakeLists.txt
+--- kwindowsystem-5.86.0/CMakeLists.txt.1~	2021-09-04 19:07:40.000000000 +0200
++++ kwindowsystem-5.86.0/CMakeLists.txt	2021-09-06 13:54:36.038424767 +0200
 @@ -58,10 +58,6 @@ if (APPLE)
      cmake_find_frameworks(CoreFoundation)
  endif()
@@ -12,18 +12,17 @@ diff -up kwindowsystem-5.85.0/CMakeLists.txt.omv~ kwindowsystem-5.85.0/CMakeList
  if (NOT APPLE)
      find_package(X11)
  endif()
-diff -up kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in.omv~ kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in
---- kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in.omv~	2021-08-06 22:09:20.910510652 +0200
-+++ kwindowsystem-5.85.0/KF5WindowSystemConfig.cmake.in	2021-08-06 22:09:29.913570886 +0200
-@@ -7,11 +7,5 @@ if(NOT @KWINDOWSYSTEM_NO_WIDGETS@)
-     find_dependency(Qt5Widgets @REQUIRED_QT_VERSION@)
+diff -up kwindowsystem-5.86.0/KF5WindowSystemConfig.cmake.in.1~ kwindowsystem-5.86.0/KF5WindowSystemConfig.cmake.in
+--- kwindowsystem-5.86.0/KF5WindowSystemConfig.cmake.in.1~	2021-09-06 13:54:36.038424767 +0200
++++ kwindowsystem-5.86.0/KF5WindowSystemConfig.cmake.in	2021-09-06 13:59:05.724600198 +0200
+@@ -12,10 +12,6 @@ if(@X11_FOUND@)
  endif()
  
--if(NOT @BUILD_SHARED_LIBS@)
+ if(NOT @BUILD_SHARED_LIBS@)
 -    if(@WIN32@)
 -        find_dependency(Qt5WinExtras @REQUIRED_QT_VERSION@)
 -    endif()
--endif()
 -
- include("${CMAKE_CURRENT_LIST_DIR}/KF5WindowSystemTargets.cmake")
- @PACKAGE_INCLUDE_QCHTARGETS@
+     if(@X11_FOUND@)
+         find_dependency(Qt5X11Extras @REQUIRED_QT_VERSION@)
+     endif()
