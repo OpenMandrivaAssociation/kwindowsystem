@@ -1,6 +1,6 @@
-diff -up kwindowsystem-5.88.0/CMakeLists.txt.1~ kwindowsystem-5.88.0/CMakeLists.txt
---- kwindowsystem-5.88.0/CMakeLists.txt.1~	2021-11-06 14:26:26.000000000 +0100
-+++ kwindowsystem-5.88.0/CMakeLists.txt	2021-11-20 12:05:19.420628281 +0100
+diff -up kwindowsystem-5.90.0/CMakeLists.txt.1~ kwindowsystem-5.90.0/CMakeLists.txt
+--- kwindowsystem-5.90.0/CMakeLists.txt.1~	2022-01-01 13:37:48.000000000 +0100
++++ kwindowsystem-5.90.0/CMakeLists.txt	2022-01-07 01:31:21.434019037 +0100
 @@ -58,10 +58,6 @@ if (APPLE)
      cmake_find_frameworks(CoreFoundation)
  endif()
@@ -12,9 +12,9 @@ diff -up kwindowsystem-5.88.0/CMakeLists.txt.1~ kwindowsystem-5.88.0/CMakeLists.
  if (NOT APPLE)
      find_package(X11)
  endif()
-diff -up kwindowsystem-5.88.0/KF5WindowSystemConfig.cmake.in.1~ kwindowsystem-5.88.0/KF5WindowSystemConfig.cmake.in
---- kwindowsystem-5.88.0/KF5WindowSystemConfig.cmake.in.1~	2021-11-20 12:05:19.420628281 +0100
-+++ kwindowsystem-5.88.0/KF5WindowSystemConfig.cmake.in	2021-11-20 12:06:48.784851572 +0100
+diff -up kwindowsystem-5.90.0/KF5WindowSystemConfig.cmake.in.1~ kwindowsystem-5.90.0/KF5WindowSystemConfig.cmake.in
+--- kwindowsystem-5.90.0/KF5WindowSystemConfig.cmake.in.1~	2022-01-07 01:31:21.434019037 +0100
++++ kwindowsystem-5.90.0/KF5WindowSystemConfig.cmake.in	2022-01-07 01:59:57.791809398 +0100
 @@ -12,10 +12,6 @@ if(@X11_FOUND@)
  endif()
  
@@ -24,5 +24,5 @@ diff -up kwindowsystem-5.88.0/KF5WindowSystemConfig.cmake.in.1~ kwindowsystem-5.
 -    endif()
 -
      if(@X11_FOUND@)
-         find_dependency(Qt5X11Extras @REQUIRED_QT_VERSION@)
-         find_dependency(XCB)
+         if (NOT TARGET Qt6::Gui)
+             find_dependency(Qt5X11Extras @REQUIRED_QT_VERSION@)
