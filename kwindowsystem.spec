@@ -5,7 +5,7 @@
 %global __provides_exclude_from ^(%{_qt5_plugindir}/.*\\.so)$
 
 Name: kwindowsystem
-Version:	5.90.0
+Version:	5.91.0
 Release:	1
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 # Drop win32 support, needed to prevent the dependency generator
@@ -30,6 +30,8 @@ BuildRequires: pkgconfig(xcb-renderutil)
 BuildRequires: pkgconfig(xcb-keysyms)
 BuildRequires: pkgconfig(xrender)
 BuildRequires: pkgconfig(xfixes)
+# For running version checks
+BuildRequires: weston
 # For QCH format docs
 BuildRequires: doxygen
 BuildRequires: qt5-assistant
@@ -126,7 +128,6 @@ done
 %{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemX11Plugin.so
 
 %files wayland
-%{_libdir}/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemWaylandPlugin.so
 
 %files -n %{devname}
 %{_includedir}/*
