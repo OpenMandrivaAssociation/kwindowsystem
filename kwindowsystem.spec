@@ -86,6 +86,12 @@ Developer documentation for %{name} for use with Qt Assistant
 %package x11
 Summary: X11 window system plugin for kwindowsystem
 Provides: %{name}-backend = %{EVRD}
+Requires: x11-server
+Requires: xinitrc
+Requires: sessreg
+Requires: xmodmap
+Requires: xrandr
+Requires: xsetroot
 
 %description x11
 X11 window system plugin for kwindowsystem.
@@ -93,6 +99,7 @@ X11 window system plugin for kwindowsystem.
 %package wayland
 Summary: Wayland window system plugin for kwindowsystem
 Provides: %{name}-backend = %{EVRD}
+Requires: qt5-qtwayland
 
 %description wayland
 Wayland window system plugin for kwindowsystem.
@@ -110,9 +117,9 @@ Wayland window system plugin for kwindowsystem.
 L="$(pwd)/%{name}.lang"
 cd %{buildroot}
 for i in .%{_datadir}/locale/*/LC_MESSAGES/*.qm; do
-	LNG=`echo $i |cut -d/ -f5`
-	echo -n "%lang($LNG) " >>$L
-	echo $i |cut -b2- >>$L
+    LNG=$(echo $i |cut -d/ -f5)
+    echo -n "%lang($LNG) " >>$L
+    echo $i |cut -b2- >>$L
 done
 
 %files -f %{name}.lang
