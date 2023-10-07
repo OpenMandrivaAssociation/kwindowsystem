@@ -6,7 +6,7 @@
 
 Name: kwindowsystem
 Version:	5.110.0
-Release:	1
+Release:	2
 Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d. -f1-2)/%{name}-%{version}.tar.xz
 # Drop win32 support, needed to prevent the dependency generator
 # from generating dependencies on Qt5WinExtras
