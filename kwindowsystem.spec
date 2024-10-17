@@ -12,7 +12,7 @@ Source0: http://download.kde.org/%{stable}/frameworks/%(echo %{version} |cut -d.
 # from generating dependencies on Qt5WinExtras
 Patch0: kwindowsystem-no-win32.patch
 Summary: The KDE Frameworks 5 window system library
-URL: http://kde.org/
+URL: https://kde.org/
 License: GPL
 Group: System/Libraries
 BuildRequires: cmake(ECM)
